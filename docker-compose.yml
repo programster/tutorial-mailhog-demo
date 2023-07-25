@@ -1,0 +1,34 @@
+version: "3.9"
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: emailer
+    image: mailhog-emailer
+    depends_on:
+        - mailhog
+    environment:
+      - SMTP_HOST=mailhog
+      - SMTP_USER=null
+      - SMTP_PASSWORD=null
+      - SMTP_PORT=1025
+      - SMTP_PROTOCOL=none
+      - SMTP_FROM_EMAIL=myapp@gmail.com
+      - SMTP_FROM_NAME=myAppName
+      - MAIL_TO_EMAIL=myemail@gmail.com
+      - MAIL_TO_NAME=My Name
+
+
+  # Mailhog fake SMTP server
+  # https://github.com/mailhog/MailHog
+  mailhog:
+    container_name: mailhog
+    image: mailhog/mailhog
+#    Uncomment the logging lines below if you need to disable logging
+#    logging:
+#      driver: 'none'  # disable saving logs
+    ports:
+        - 1025:1025 # smtp server
+        - 8025:8025 # web ui

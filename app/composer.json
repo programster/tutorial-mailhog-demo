@@ -1,0 +1,12 @@
+{
+    "require": {
+        "programster/emailers": "dev-add-support-for-no-smtp-encryption"
+    },
+    "config": {
+        "platform" : {
+            "php": "8.2.0",
+            "ext-curl": "1",
+            "ext-mbstring": "1"
+        }
+    }
+}
